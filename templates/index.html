@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Recognition</title>
+    <link rel="stylesheet" href="static/style1.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-sidebar">
+            <h1>Object Recognition using pretrained model</h1>
+            <nav>
+                <ul>
+                    <li><a href="/welcome">welcome</a></li>
+                    <li><a href="/about">About Project</a></li>
+                    <li><a href="/coco_examples">COCO Examples</a></li>
+                    <li><a href="/working">Project Working</a></li>
+                    <li><a href="/applications">applications</a></li>
+                    <li><a href="/thankyou">Thank You</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="main-content">
+            <div class="webcam-container">
+                <video id="webcam-feed" autoplay></video>
+                <div class="right-controls">  <button id="start-detection">Start Detection</button>
+                    <div id="detection-results"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-sidebar">
+            <h3>Interaction Zone</h3>
+            <p>Interact with the video feed and detection controls.</p>
+        </div>
+    </div>
+    <script src="static/script.js"></script>
+</body>
+
+</html>

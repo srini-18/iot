@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Recognition - Main</title>
+    <link rel="stylesheet" href="static/style1.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-sidebar">
+            <h1>
+                Object Recognition in Real-time
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Welcome</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/coco">COCO Dataset</a></li>
+                    <li><a href="/main">Main Content</a></li>
+                    <li><a href="/applications">Applications</a></li>
+                    <li><a href="/thankyou">Thank You</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="main-content">
+            <h2>
+                Real-time Object Detection
+            </h2>
+            <div class="webcam-container">
+                <video id="webcam-feed" autoplay></video>
+                <div class="right-controls">
+                    <button id="start-detection">
+                        Start Detection
+                    </button>
+                    <div id="detection-results">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-sidebar">
+            <h3>
+                Interaction Zone
+            </h3>
+            <p>
+                Click 'Start Detection' to begin.
+            </p>
+        </div>
+    </div>
+    <script src="static/script.js"></script>
+</body>
+
+</html>

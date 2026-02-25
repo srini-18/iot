@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Object Recognition</title>
+    <link rel="stylesheet" href="static/style1.css">
+    <style>
+        .welcome-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: rotateAndTilt 10s infinite alternate, infinite alternate;
+        }
+
+        .welcome-title {
+            font-size: 3.5em;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            transform: translateZ(50px) rotateX(10deg);
+            animation: fadeInUp 1s;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.5em;
+            color: #aaa;
+            text-align: center;
+            margin-bottom: 30px;
+            transform: translateZ(40px);
+            animation: fadeIn 1s;
+        }
+
+        .welcome-text {
+            color: #ddd;
+            font-size: 1.2em;
+            text-align: center;
+            max-width: 600px;
+            transform: translateZ(30px);
+            animation: fadeIn 1s;
+            margin-bottom: 30px;
+        }
+
+        .start-button {
+            padding: 15px 30px;
+            background-color: #ff6b6b;
+            color: #222;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.2s, transform 0.2s;
+            margin-top: 30px;
+            display: inline-block;
+            transform: translateZ(40px);
+            animation: pulse 2s infinite alternate;
+        }
+
+        .start-button:hover {
+            background-color: #fff;
+            transform: scale(1.05) translateZ(40px);
+        }
+
+        .highlight {
+            color: #66b3ff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="welcome-container">
+            <h1 class="welcome-title">
+                Object Recognition Project 
+                <span style="font-size: 1em;">
+                    <span role="img" aria-label="camera"> 📷</span>
+                    <span role="img" aria-label="eyes"> 👀</span>
+                    <span role="img" aria-label="brain"> 🧠</span>
+                </span>
+            </h1>
+            <h2 class="welcome-subtitle">
+                smvptc <span role="img" aria-label="school"> 🏫</span>
+            </h2>
+            <p class="welcome-text">
+                Explore the world of <span class="highlight">real-time object detection</span> with our project, powered by YOLOv8 and web technology.
+            </p>
+            <p class="welcome-text">
+                See it in action! <span role="img" aria-label="sparkle"> ✨</span>
+            </p>
+            <a href="/about" class="start-button">
+                Learn More <span role="img" aria-label="arrow"> ➡️</span>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

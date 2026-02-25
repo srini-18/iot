@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Working</title>
+    <link rel="stylesheet" href="static/style1.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-sidebar">
+            <h1>Project Working</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Welcome</a></li>
+                    <li><a href="/about">About Project</a></li>
+                    <li><a href="/coco_examples">COCO Examples</a></li>
+                    <li><a href="/working">Project Working</a></li>
+                    <li><a href="/team">Our Team</a></li>
+                    <li><a href="/thankyou">Thank You</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="main-content">
+            <h2>How Our Project Works</h2>
+            <p>
+                Our Object Recognition project utilizes a webcam to capture real-time video frames. These frames are then processed using the YOLOv8 object detection model.
+            </p>
+            <h3>Working Steps:</h3>
+            <ol>
+                <li><strong>Webcam Input:</strong> The user's webcam provides the video stream.</li>
+                <li><strong>Frame Processing:</strong> Each video frame is analyzed by the YOLOv8 model.</li>
+                <li><strong>Object Detection:</strong> YOLOv8 identifies and classifies objects within the frame.</li>
+                <li><strong>Output Display:</strong> The detected objects are highlighted with bounding boxes and labels on the video feed.</li>
+            </ol>
+            <p>
+                This process happens continuously, providing a real-time object recognition experience.
+            </p>
+        </div>
+        <div class="right-sidebar">
+            <h3>Technical Details</h3>
+            <p>
+                We use Python, Flask, OpenCV, and the YOLOv8 library for this project.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

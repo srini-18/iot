@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-World Applications</title>
+    <link rel="stylesheet" href="static/style1.css">
+    <style>
+        /* (Existing styles)  */
+        .applications-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            transform-style: preserve-3d;
+            animation: rotateAndTilt 10s infinite alternate;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .applications-title {
+            font-size: 2.5em;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            transform: translateZ(50px);
+            animation: fadeInUp 1s;
+        }
+
+        .applications-details {
+            color: #aaa;
+            font-size: 1.1em;
+            text-align: left;
+            max-width: 800px;
+            transform: translateZ(30px);
+            animation: fadeIn 1s;
+            margin-bottom: 20px;
+        }
+
+        .applications-list {
+            color: #aaa;
+            font-size: 1.1em;
+            text-align: left;
+            max-width: 600px;
+            transform: translateZ(30px);
+            animation: fadeIn 1s;
+        }
+
+        .applications-list li {
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+
+        .applications-list li:hover {
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-sidebar">
+            <h1>Real-World Applications</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Welcome</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/coco">COCO Dataset</a></li>
+                    <li><a href="/main">Main Content</a></li>
+                    <li><a href="/applications">Applications</a></li>
+                    <li><a href="/thankyou">Thank You</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="main-content">
+            <div class="applications-container">
+                <h1 class="applications-title">
+                    Real-World Applications
+                </h1>
+                <div class="applications-details">
+                    <p>
+                        Object recognition technology is transforming various industries. Here are some key applications:
+                    </p>
+                </div>
+                <ul class="applications-list">
+                    <li>
+                        <b>Autonomous Vehicles:</b>
+                        <br>
+                        Enables self-driving cars to perceive and react to their environment.
+                    </li>
+                    <li>
+                        <b>Surveillance:</b>
+                        <br>
+                        Enhances security and monitoring through automated object detection.
+                    </li>
+                    <li>
+                        <b>Retail:</b>
+                        <br>
+                        Improves inventory management, automates checkout processes.
+                    </li>
+                    <li>
+                        <b>Healthcare:</b>
+                        <br>
+                        Aids in medical imaging analysis and diagnostics.
+                    </li>
+                    <li>
+                        <b>Manufacturing:</b>
+                        <br>
+                        Automates quality control and inspection processes.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

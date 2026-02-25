@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COCO Dataset</title>
+    <link rel="stylesheet" href="static/style1.css">
+    <style>
+        /* (Existing styles)  */
+        .coco-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            transform-style: preserve-3d;
+            animation: rotateAndTilt 10s infinite alternate;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .coco-title {
+            font-size: 2.5em;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            transform: translateZ(50px);
+            animation: fadeInUp 1s;
+        }
+
+        .coco-details {
+            color: #aaa;
+            font-size: 1.1em;
+            text-align: left;
+            max-width: 800px;
+            transform: translateZ(30px);
+            animation: fadeIn 1s;
+            margin-bottom: 20px;
+        }
+
+        .coco-examples {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            transform: translateZ(40px);
+            animation: slideInRight 1s;
+            flex-wrap: wrap;
+        }
+
+        .coco-example-img {
+            max-width: 200px;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .coco-example-img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-sidebar">
+            <h1>COCO Dataset</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Welcome</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/coco">COCO Dataset</a></li>
+                    <li><a href="/main">Main Content</a></li>
+                    <li><a href="/applications">Applications</a></li>
+                    <li><a href="/thankyou">Thank You</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="main-content">
+            <div class="coco-container">
+                <h1 class="coco-title">
+                    COCO Dataset
+                </h1>
+                <div class="coco-details">
+                    <p>
+                        The COCO (Common Objects in Context) dataset is a large-scale dataset for object detection,
+                        segmentation, and image captioning. It's designed to help computer vision models better understand
+                        complex scenes with multiple objects.
+                    </p>
+                    <p>
+                        <b>Key characteristics:</b>
+                    </p>
+                    <ul>
+                        <li>Large number of images</li>
+                        <li>Diverse object categories (80)</li>
+                        <li>Detailed annotations (bounding boxes, segmentation, captions)</li>
+                    </ul>
+                </div>
+                <div class="coco-examples">
+                    <img src="static/coco_example1.jpg" alt="COCO Example 1" class="coco-example-img">
+                    <img src="static/coco_example2.jpg" alt="COCO Example 2" class="coco-example-img">
+                    <img src="static/coco_example3.jpg" alt="COCO Example 3" class="coco-example-img">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
