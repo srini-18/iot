@@ -1,81 +1,88 @@
-const canvas = document.createElement("canvas");
-const context = canvas.getContext("2d");
+const video = document.getElementById("webcam-feed") || document.getElementById("video");
+const startButton = document.getElementById("start-detection");
+const detectionResultsDiv = document.getElementById("detection-results");
 
-function sendFrame(video) {
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    context.drawImage(video, 0, 0);
+let detectionTimer = null;
 
-    const imageData = canvas.toDataURL("image/jpeg");
-
-    fetch("/detect", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ image: imageData })
-    })
-    .then(res => res.json())
-    .then(data => console.log(data));
-}
-function captureAndDetect() {
-    const canvas = document.createElement('canvas');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    canvas.toBlob(blob => {
-        const formData = new FormData();
-        formData.append('frame', blob, 'frame.jpg');
-        fetch('http://localhost:5000/detect', { // Adjust if your backend is on a different port
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                console.error("Detection error:", data.error);
-                detectionResultsDiv.textContent = "Error during detection.";
-            } else {
-                displayDetectionResults(data);
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            detectionResultsDiv.textContent = "Error connecting to detection server.";
-        });
-    }, 'image/jpeg');
-}const video = document.getElementById("video");
-
-navigator.mediaDevices.getUserMedia({ video: true })
-.then(stream => {
-    video.srcObject = stream;
-    video.play();
-});
-
-function captureAndSend() {
-    const canvas = document.createElement("canvas");
-    const context = canvas.getContext("2d");
-
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    context.drawImage(video, 0, 0);
-
-    const imageData = canvas.toDataURL("image/jpeg");
-
-    fetch("/detect", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ image: imageData })
-    })
-    .then(res => res.json())
-    .then(data => console.log(data));
-}
-
-function displayDetectionResults(results) {
-    let resultsText = "Detected Objects: ";
-    for (const item in results) {
-        resultsText += `${item} (${results[item].confidence.toFixed(2)}) `;
+async function startWebcam() {
+    if (!video || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        return;
     }
-    detectionResultsDiv.textContent = resultsText;
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+        await video.play();
+    } catch (error) {
+        console.error("Webcam access failed:", error);
+        if (detectionResultsDiv) {
+            detectionResultsDiv.textContent = "Unable to access webcam.";
+        }
+    }
+}
+
+function renderDetections(detections) {
+    if (!detectionResultsDiv) {
+        return;
+    }
+    if (!detections || detections.length === 0) {
+        detectionResultsDiv.textContent = "No objects detected.";
+        return;
+    }
+    const items = detections
+        .slice(0, 8)
+        .map((d) => `${d.class} (${(d.confidence * 100).toFixed(1)}%)`);
+    detectionResultsDiv.textContent = `Detected: ${items.join(", ")}`;
+}
+
+async function captureAndDetect() {
+    if (!video || video.readyState < 2) {
+        return;
+    }
+
+    const canvas = document.createElement("canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const context = canvas.getContext("2d");
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    const imageData = canvas.toDataURL("image/jpeg");
+
+    try {
+        const response = await fetch("/detect", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ image: imageData })
+        });
+        const result = await response.json();
+        if (!response.ok) {
+            throw new Error(result.error || "Detection failed");
+        }
+        renderDetections(result.detections);
+    } catch (error) {
+        console.error("Detection error:", error);
+        if (detectionResultsDiv) {
+            detectionResultsDiv.textContent = "Detection failed.";
+        }
+    }
+}
+
+function toggleDetection() {
+    if (!startButton) {
+        return;
+    }
+    if (detectionTimer) {
+        clearInterval(detectionTimer);
+        detectionTimer = null;
+        startButton.textContent = "Start Detection";
+        return;
+    }
+
+    captureAndDetect();
+    detectionTimer = setInterval(captureAndDetect, 1500);
+    startButton.textContent = "Stop Detection";
+}
+
+startWebcam();
+if (startButton) {
+    startButton.addEventListener("click", toggleDetection);
 }

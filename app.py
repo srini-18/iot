@@ -24,18 +24,65 @@ def home():
     return render_template("index.html")
 
 
+@app.route("/welcome")
+def welcome():
+    return render_template("welcome.html")
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
+@app.route("/coco")
+@app.route("/coco_examples")
+def coco():
+    return render_template("coco.html")
+
+
+@app.route("/working")
+def working():
+    return render_template("working.html")
+
+
+@app.route("/applications")
+def applications():
+    return render_template("applications.html")
+
+
+@app.route("/thankyou")
+def thankyou():
+    return render_template("thankyou.html")
+
+
+@app.route("/main")
+def main():
+    return render_template("main.html")
+
+
+@app.route("/team")
+def team():
+    # Keep legacy link from templates working without 404.
+    return render_template("applications.html")
+
+
 @app.route("/detect", methods=["POST"])
 def detect():
     try:
-        data = request.json.get("image")
+        payload = request.get_json(silent=True) or {}
+        data = payload.get("image")
 
         if not data:
             return jsonify({"error": "No image received"}), 400
 
         # Decode base64 image
-        img_data = base64.b64decode(data.split(",")[1])
+        if "," in data:
+            data = data.split(",", 1)[1]
+        img_data = base64.b64decode(data)
         np_arr = np.frombuffer(img_data, np.uint8)
         frame = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
+        if frame is None:
+            return jsonify({"error": "Invalid image data"}), 400
 
         # Run YOLO inference
         results = model(frame)
