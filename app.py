@@ -54,4 +54,6 @@ def detect():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000)
+    # Use PORT env var provided by hosting platforms (e.g., Azure Web App)
+    port = int(os.environ.get("PORT", 8000))
+    app.run(host="0.0.0.0", port=port)

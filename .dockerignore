@@ -1,0 +1,14 @@
+__pycache__
+*.pyc
+.git
+.github
+.venv
+env
+venv
+*.egg-info
+dist
+build
+\.pytest_cache
+
+# optionally exclude large model file if you will pull it at runtime or store externally
+# yolov8n.pt
