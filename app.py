@@ -1,11 +1,20 @@
 from flask import Flask, request, jsonify, render_template
 from ultralytics import YOLO
+from ultralytics.nn.tasks import DetectionModel
 import cv2
 import numpy as np
 import base64
 import os
+import torch
 
 app = Flask(__name__)
+
+# PyTorch 2.6+ defaults `torch.load(..., weights_only=True)`.
+# Allowlist Ultralytics model class so YOLO weights load successfully.
+try:
+    torch.serialization.add_safe_globals([DetectionModel])
+except Exception:
+    pass
 
 # Load YOLO model once (important for performance)
 model = YOLO("yolov8n.pt")
